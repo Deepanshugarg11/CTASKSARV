@@ -71,7 +71,7 @@ pipeline {
     }
     
     post {
-        success {s
+        success {
             echo 'Pipeline executed successfully!'
         }
         failure {
