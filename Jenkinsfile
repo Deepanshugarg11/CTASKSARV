@@ -44,7 +44,6 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging environment...'
-                sh 'scp target/*.jar user@staging-server:/path/to/deploy/' // Example deployment
             }
         }
         
