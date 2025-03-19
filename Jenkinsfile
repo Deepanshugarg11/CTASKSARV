@@ -12,7 +12,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...' // Log message for build step
-                //sh 'mvn clean package' // Example: Run Maven build (uncomment to enable)
             }
             post {
                 always {
@@ -28,7 +27,6 @@ pipeline {
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...' // Log message for test step
-                //sh 'mvn test' // Example: Run unit and integration tests (uncomment to enable)
             }
             post {
                 always {
@@ -44,7 +42,6 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 echo 'Performing static code analysis...' // Log message for code analysis step
-                // sh 'sonar-scanner' // Example: Perform static code analysis using SonarQube (uncomment to enable)
             }
             post {
                 always {
@@ -60,7 +57,6 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...' // Log message for security scan step
-                //sh 'trivy fs .' // Example: Run security vulnerability scan using Trivy (uncomment to enable)
             }
             post {
                 always {
@@ -91,7 +87,6 @@ pipeline {
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...' // Log message for integration tests on staging step
-                // sh 'mvn verify' // Example: Run verification tests (uncomment to enable)
             }
             post {
                 always {
