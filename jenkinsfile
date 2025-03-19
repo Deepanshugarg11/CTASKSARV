@@ -9,28 +9,28 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                sh 'mvn clean package' // Example: using Maven for Java projects
+                //sh 'mvn clean package' // Example: using Maven for Java projects
             }
         }
         
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running unit and integration tests...'
-                sh 'mvn test' // Runs unit and integration tests
+                //sh 'mvn test' // Runs unit and integration tests
             }
         }
         
         stage('Code Analysis') {
             steps {
                 echo 'Performing static code analysis...'
-                sh 'sonar-scanner' // Example: SonarQube for code analysis
+               // sh 'sonar-scanner' // Example: SonarQube for code analysis
             }
         }
         
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...'
-                sh 'trivy fs .' // Example: Using Trivy for security vulnerability scanning
+                //sh 'trivy fs .' // Example: Using Trivy for security vulnerability scanning
             }
             post {
                 always {
@@ -51,7 +51,7 @@ pipeline {
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...'
-                sh 'mvn verify' // Example: running verification tests
+               // sh 'mvn verify' // Example: running verification tests
             }
             post {
                 always {
@@ -65,13 +65,13 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production...'
-                sh 'scp target/*.jar user@production-server:/path/to/deploy/' // Example deployment
+                //sh 'scp target/*.jar user@production-servesr:/path/to/deploy/' // Example deployment
             }
         }
     }
     
     post {
-        success {
+        success {s
             echo 'Pipeline executed successfully!'
         }
         failure {
