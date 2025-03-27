@@ -7,33 +7,17 @@ pipeline {
         AWS_CREDENTIALS = credentials('aws-credentials')
     }
 
-    tools {
-        maven 'Maven 3.8.1'  // Maven for build and testing
-        jdk 'JDK 11'         // Java Development Kit
-    }
-
     stages {
-        stage('Checkout Code') {
-            steps {
-                echo 'Cloning repository from GitHub...'
-                git 'https://github.com/your-repo.git'  // Replace with actual repository URL
-            }
-        }
-
+        // Stage 1: Build
         stage('Build') {
-            tools {
-                maven 'Maven 3.8.1'
-            }
             steps {
                 echo 'Building the application using Maven...'
                 sh 'mvn clean package -DskipTests'
             }
         }
 
+        // Stage 2: Unit and Integration Tests
         stage('Unit and Integration Tests') {
-            tools {
-                maven 'Maven 3.8.1'
-            }
             steps {
                 echo 'Running unit tests with JUnit...'
                 sh 'mvn test'
@@ -43,26 +27,23 @@ pipeline {
             }
         }
 
+        // Stage 3: Code Analysis
         stage('Code Analysis') {
-            tools {
-                sonarQube 'SonarQube'  // SonarQube for code quality analysis
-            }
             steps {
                 echo 'Analyzing code using SonarQube...'
                 sh 'mvn sonar:sonar'
             }
         }
 
+        // Stage 4: Security Scan
         stage('Security Scan') {
-            tools {
-                dependencyCheck 'OWASP Dependency Check'  // OWASP for security scanning
-            }
             steps {
                 echo 'Performing security scan with OWASP Dependency Check...'
                 sh 'mvn org.owasp:dependency-check-maven:check'
             }
         }
 
+        // Stage 5: Deploy to Staging
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to AWS EC2 Staging server...'
@@ -73,6 +54,7 @@ pipeline {
             }
         }
 
+        // Stage 6: Integration Tests on Staging
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running Selenium integration tests on Staging...'
@@ -80,6 +62,7 @@ pipeline {
             }
         }
 
+        // Stage 7: Deploy to Production
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to AWS EC2 Production server...'
